@@ -11,7 +11,7 @@ Our tests are written using Cucumber and the Gherkin syntax; they are executed u
 The development tools below are available online
 * Java 8
 * Maven
-*Cucumber -enable cucumber plugin in intellij, cucumber jar used-cucumber-core-1.2.5, cucumber-java-4.3.0, cucumber-junit-4.3.0
+* Cucumber -enable cucumber plugin in intellij, cucumber jar used-cucumber-core-1.2.5, cucumber-java-4.3.0, cucumber-junit-4.3.0
 
 ## Installation
 To install all Java dependencies, run
@@ -23,14 +23,13 @@ $ mvn clean install
 ```console
 $ mvn test
 ```
+
 ## Test structure
 
 `src\test\resources\feature\PasswordValidator` - Contains all Cucumber features.
-
 `src\test\java\com\RunCucumberTest.java` - Main class that executes Cucumber tests.
-
 `src\test\java\com\java.com.Stepdef.java\` - Each class in this directory is aligned to a Cucumber feature file. These classes contain step defintions that is only in scope of the connected feature.
 
-`src\test\java\com\hooks\` - Contains step definitions for Cucumber's Before and After hooks.
+`src\test\java\com\PasswordValidator.java\` - Contains system password validation checks
 
-`src\test\java\com\PasswordValidator.java\` - Contains password validation logic
+`src\test\java\com\PasswordComparator.java\` - Contains old and new password comparison checks
