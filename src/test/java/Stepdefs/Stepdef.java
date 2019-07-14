@@ -14,7 +14,7 @@ public class Stepdef {
     public void verifyOldPasswordShouldMatchWithSystem() {
     }
 
-    @Then("^Verify the new password is a valid password$")
+    @Then("^Verify the new password \"([^\"]*)\" is a valid password$")
     public void verifyTheNewPasswordIsAValidPassword() {
         
     }

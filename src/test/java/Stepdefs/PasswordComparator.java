@@ -27,4 +27,8 @@ public class PasswordComparator {
         return (double) numberOfSimilarities / oldPassword.length();
     }
 
+    public void systemMatch(String password){
+
+    }
+
 }

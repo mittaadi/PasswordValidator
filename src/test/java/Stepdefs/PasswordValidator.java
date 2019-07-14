@@ -10,8 +10,11 @@ public class PasswordValidator {
         new PasswordValidator();
     }
 
-    public void checkPasswordIsValid(String password) {
-
+    public boolean checkPasswordIsValid(String password) {
+            if(duplicateRepeatCharCheck(password) && numCheck(password) && lengthCheck(password) && specialCharCheck(password) && minCharCheck(password))
+                return true;
+            else
+                return false;
     }
 
 //    At least 18 alphanumeric characters and list of special chars !@#$&*
@@ -20,7 +23,7 @@ public class PasswordValidator {
 //    No more than 4 special characters
 //    50 % of password should not be a number
 
-    public void duplicateRepeatCharCheck(String password, int dupCount) {
+    public boolean duplicateRepeatCharCheck(String password) {
         Map<Character, Integer> countChar = new HashMap<>();
         Map<Character, Boolean> repeatedChar = new HashMap<>();
         for (int i = 0; i < password.length(); i++) {
@@ -32,14 +35,15 @@ public class PasswordValidator {
         }
         System.out.println(countChar);
         for (Character ch : countChar.keySet()) {
-            if (countChar.get(ch) > dupCount) {//4
+            if (countChar.get(ch) > 4) {//4
                 repeatedChar.put(ch, false);
-                System.out.println("Character: " + ch + "actual occurence: " + countChar.get(ch) + " has been used more than " + dupCount + " times");
+                System.out.println("Character: " + ch + "actual occurence: " + countChar.get(ch) + " has been used more than 4 times");
             }
         }
+        return repeatedChar.containsValue(false);
     }
 
-    public boolean numCheck(String password, int numPercentAccepted) {
+    public boolean numCheck(String password) {
         int numCount = 0;
         for (int i = 0; i < password.length(); i++) {
             char ch = password.charAt(i);
@@ -47,28 +51,28 @@ public class PasswordValidator {
         }
         System.out.println("Length of the password is: " + password.length());
         System.out.println("Count of numbers in password: " + numCount);
-        if (numCount >= password.length() / numPercentAccepted) { //5
+        if (numCount >= password.length() / 5) { //5
             System.out.println("50 % of password should not be a number");
             return false;
         } else
             return true;
     }
 
-    public boolean lengthCheck(String password, int passwordLength) {
-        if (password.length() < passwordLength) {
+    public boolean lengthCheck(String password) {
+        if (password.length() < 18) {
             System.out.println("password not accepted length less than 18");
             return false;
         } else
             return true;
     }
 
-    public boolean specialCharCheck(String password, String specialChar) {
-        Pattern regex = Pattern.compile("specialChar");//[@#$&*!]
+    public boolean specialCharCheck(String password) {
+        Pattern regex = Pattern.compile("[@#$&*!]");//[@#$&*!]
         if (regex.matcher(password).find()) {
 //            System.out.println("password accepted");
             return true;
         } else {
-            System.out.println("special character other than " + specialChar + " not accepted");
+            System.out.println("special character other than [@#$&*!] are not accepted");
             return false;
         }
     }
