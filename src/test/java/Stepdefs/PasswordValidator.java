@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 public class PasswordValidator {
     public static void main(String[] args) {
-        new PasswordValidator();
     }
 
     public boolean checkPasswordIsValid(String password) {
@@ -40,7 +39,10 @@ public class PasswordValidator {
                 System.out.println("Character: " + ch + "actual occurence: " + countChar.get(ch) + " has been used more than 4 times");
             }
         }
+        if(repeatedChar.size()>0)
         return repeatedChar.containsValue(false);
+        else
+            return true;
     }
 
     public boolean numCheck(String password) {
@@ -51,7 +53,7 @@ public class PasswordValidator {
         }
         System.out.println("Length of the password is: " + password.length());
         System.out.println("Count of numbers in password: " + numCount);
-        if (numCount >= password.length() / 5) { //5
+        if (numCount >= password.length() / 2) { //2
             System.out.println("50 % of password should not be a number");
             return false;
         } else

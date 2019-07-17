@@ -6,29 +6,38 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ConnectingDatabase {
-    public static Statement stat;
+    public static Statement stmt;
     public static Connection conn;
 
-    public static String connectDB(){
-   try{
+    public static String connectDB(String userName) throws SQLException {
+        String password=null;
+        ResultSet rs=null;
+        try {
             Class.forName("org.h2.Driver");
             conn = DriverManager.getConnection("jdbc:h2:~/test");
-             stat = conn.createStatement();
-            stat.execute("");//query to fetch password from system
+            stmt = conn.createStatement();
+            rs=stmt.executeQuery("Select Password from userInfo where UserName='"+userName+"'");//query to fetch password from system
 
-        }
-        catch(ClassNotFoundException e){
+            while(rs.next()){
+                password=rs.getString("Password");
+            }
+
+        } catch (ClassNotFoundException e) {
             System.out.println("Error in Database Driver");
             return "failed";
-        }
-        catch (SQLException e) {
-           System.out.println("Issue in SQL Query");
+        } catch (SQLException e) {
+            System.out.println("Issue in SQL Query");
             return "Failed";
+        } finally {
+            conn.close();
+            stmt.close();
         }
 
-        return "Pass";
+        if(password!=null)
+        return password;
+        else
+            return null;
     }
-
 
 
 }
