@@ -31,5 +31,5 @@ $ mvn test
 `src\test\java\Stepdefs\Stepdef.java\` - This class is aligned to a Cucumber feature file. These classes contain step defintions that is only in scope of the connected feature.
 `src\test\java\Stepdefs\PasswordValidator.java\` - Contains system password validation checks
 `src\test\java\Stepdefs\PasswordComparator.java\` - Contains old and new password comparison checks
-`src\test\java\utils\ConnectingDatabase.java\ - Contains database connectivity code. Required if fetching system password from db.
-`src\test\java\utils\PropertyReader.java\ - reads the property file. Required if fetching system password from properties file.
+`src\test\java\utils\ConnectingDatabase.java\` - Contains database connectivity code. Required if fetching system password from db.
+`src\test\java\utils\PropertyReader.java\` - reads the property file. Required if fetching system password from properties file.
