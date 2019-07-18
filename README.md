@@ -11,7 +11,7 @@ Our tests are written using Cucumber and the Gherkin syntax; they are executed u
 The development tools below are available online
 * Java 8
 * Maven
-* Cucumber -enable cucumber plugin in intellij, cucumber jar used-cucumber-core-1.2.5, cucumber-java-4.3.0, cucumber-junit-4.3.0
+* Cucumber -enable cucumber plugin in intellij,
 
 ## Installation
 To install all Java dependencies, run
@@ -27,9 +27,9 @@ $ mvn test
 ## Test structure
 
 `src\test\resources\feature\PasswordValidator` - Contains all Cucumber features.
-`src\test\java\com\RunCucumberTest.java` - Main class that executes Cucumber tests.
-`src\test\java\com\java.com.Stepdef.java\` - Each class in this directory is aligned to a Cucumber feature file. These classes contain step defintions that is only in scope of the connected feature.
-
-`src\test\java\com\PasswordValidator.java\` - Contains system password validation checks
-
-`src\test\java\com\PasswordComparator.java\` - Contains old and new password comparison checks
+`src\test\java\TestRunner\RunCucumberTest.java` - Main class that executes Cucumber tests.
+`src\test\java\Stepdefs\Stepdef.java\` - This class is aligned to a Cucumber feature file. These classes contain step defintions that is only in scope of the connected feature.
+`src\test\java\Stepdefs\PasswordValidator.java\` - Contains system password validation checks
+`src\test\java\Stepdefs\PasswordComparator.java\` - Contains old and new password comparison checks
+`src\test\java\utils\ConnectingDatabase.java\ - Contains database connectivity code. Required if fetching system password from db.
+`src\test\java\utils\PropertyReader.java\ - reads the property file. Required if fetching system password from properties file.

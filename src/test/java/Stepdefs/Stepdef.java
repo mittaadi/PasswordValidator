@@ -2,6 +2,7 @@ package Stepdefs;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import utils.ConnectingDatabase;
 import utils.PropertyReader;
@@ -33,16 +34,13 @@ public class Stepdef {
         Assert.assertTrue(new PasswordValidator().checkPasswordIsValid(newPassword));
     }
 
-    @Then("^Verify new password is not similar to old password <(\\d+)% match$")
-    public void verifyNewPasswordIsNotSimilarToOldPasswordMatch(int percentMatch) {
-        Assert.assertTrue(new PasswordComparator().changePassword(assignOldPassword,assignNewPassword));
-        Assert.assertTrue(new PasswordComparator().similarityCheck(assignOldPassword,assignNewPassword,percentMatch));
-    }
-
     @Then("Verify new password is similar to old password for less than {int}% match")
     public void verifyNewPasswordIsSimilarToOldPasswordForLessThanMatch(Integer percentMatch) {
-        Assert.assertTrue(new PasswordComparator().changePassword(assignOldPassword,assignNewPassword));
-        Assert.assertTrue(new PasswordComparator().similarityCheck(assignOldPassword,assignNewPassword,percentMatch));
-        throw new cucumber.api.PendingException();
+        boolean flag=new PasswordComparator().changePassword(assignOldPassword,assignNewPassword,percentMatch);
+        if(flag)
+            System.out.println("New password accepted");
+        else
+            System.out.println("New Password not accepted");
+        Assert.assertTrue(flag);
     }
 }

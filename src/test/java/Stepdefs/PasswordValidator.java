@@ -6,14 +6,14 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 public class PasswordValidator {
-    public static void main(String[] args) {
-    }
 
     public boolean checkPasswordIsValid(String password) {
-            if(duplicateRepeatCharCheck(password) && numCheck(password) && lengthCheck(password) && specialCharCheck(password) && minCharCheck(password))
-                return true;
-            else
-                return false;
+        if (duplicateRepeatCharCheck(password) && numCheck(password) && lengthCheck(password) && specialCharCheck(password) && minCharCheck(password))
+            return true;
+        else {
+            System.out.println("password does not meet system requirement");
+            return false;
+        }
     }
 
 //    At least 18 alphanumeric characters and list of special chars !@#$&*
@@ -32,15 +32,16 @@ public class PasswordValidator {
             } else
                 countChar.put(ch, 1);
         }
-        System.out.println(countChar);
+        System.out.println("array containing count of all characters: " + countChar);
         for (Character ch : countChar.keySet()) {
             if (countChar.get(ch) > 4) {//4
                 repeatedChar.put(ch, false);
-                System.out.println("Character: " + ch + "actual occurence: " + countChar.get(ch) + " has been used more than 4 times");
+                System.out.println("Character: " + ch + " actual occurence: " + countChar.get(ch));
+                System.out.println("Character has been used more than 4 times");
             }
         }
-        if(repeatedChar.size()>0)
-        return repeatedChar.containsValue(false);
+        if (repeatedChar.size() > 0)
+            return repeatedChar.containsValue(false);
         else
             return true;
     }
@@ -53,7 +54,7 @@ public class PasswordValidator {
         }
         System.out.println("Length of the password is: " + password.length());
         System.out.println("Count of numbers in password: " + numCount);
-        if (numCount >= password.length() / 2) { //2
+        if (numCount >= password.length() / 2) {
             System.out.println("50 % of password should not be a number");
             return false;
         } else
@@ -71,10 +72,9 @@ public class PasswordValidator {
     public boolean specialCharCheck(String password) {
         Pattern regex = Pattern.compile("[@#$&*!]");//[@#$&*!]
         if (regex.matcher(password).find()) {
-//            System.out.println("password accepted");
             return true;
         } else {
-            System.out.println("special character other than [@#$&*!] are not accepted");
+            System.out.println("special character should be from [@#$&*!]");
             return false;
         }
     }
@@ -91,12 +91,13 @@ public class PasswordValidator {
         }
         String SPECIAL_CHAR_REGEX = "[@#$&*!]";
         int specials = password.split(SPECIAL_CHAR_REGEX).length - 1;
-
+        if(specials>=4)
+            System.out.println("More than 4 special characters used");
 
         if (charCount > 0 && numCount > 0 && letterCount > 0 && specials > 0 && specials <= 4) {
             System.out.println("Number of uppercase letters: " + charCount);
             System.out.println("Number of numeric letters: " + numCount);
-            System.out.println("Special charcter count: " + specials);
+            System.out.println("Special character count: " + specials);
             return true;
         } else return false;
     }

@@ -9,13 +9,17 @@ Feature: Update new password
     Examples:
       | OldPassword          | NewPassword                 |
       | ExistingPassword@123 | Newpassword!2019@07         |
-#      | ExistingPassword@123 | NewPassword                 |
+#      | ExistingPassword@123 | NewPassword2019!                 |
 #      | ExistingPassword@123 | NewPasswordNoNumber!        |
 #      | ExistingPassword@123 | NewPasswordNoSpecialChar12  |
 #      | ExistingPassword@123 | 1234567890!@#12345          |
-#      | ExistingPassword@123 | NewPassword^CheckSpecial    |
+#      | ExistingPassword@123 | NewPassword2019^CheckSpecial    |
 #      | ExistingPassword@123 | newpasswordnouppercase12#   |
 #      | ExistingPassword@123 | NewPasswordDuuuuupCheck123& |
 #      | ExistingPassword@123 | NewPassword!@#$&*90         |
 #      | ExistingPassword@123 | NewPassword12345678901!     |
 #      | ExistingPassword@123 | ExistingPassword@123        |
+#      | ExistingPassword@123 | ExistingPassword@456        |
+#      | ExistingPassword@123 | ExistingPassword!456        |
+#      | ExistingPassword@123 | ExistingPassworr!456        |
+#    |ExistingPassword@123  |123@PasswordExisting         |
